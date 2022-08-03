@@ -15,9 +15,6 @@ def get_application() -> FastAPI:
         title=settings.TITLE,
         description=settings.DESCRIPTION,
         debug=settings.DEBUG,
-        docs_url=None,
-        redoc_url=None,
-        openapi_url=None,
     )
     application.include_router(api_router, prefix=settings.API_V1_STR)
     return application

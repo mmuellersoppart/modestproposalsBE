@@ -16,7 +16,7 @@ class EnvironmentEnum(str, Enum):
 
 class GlobalConfig(BaseSettings):
     TITLE: str = "Tutorial"
-    DESCRIPTION: str = "This is a tutorial project for my blog"
+    DESCRIPTION: str = "The backend service for modestproposals.net."
 
     ENVIRONMENT: EnvironmentEnum
     DEBUG: bool = False
