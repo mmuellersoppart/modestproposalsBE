@@ -1,4 +1,4 @@
-FROM python:3.9.6-buster as production
+FROM python:latest as production
 
 WORKDIR /app
 
