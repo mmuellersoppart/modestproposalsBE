@@ -1,8 +1,8 @@
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
-from app.db.tables.user import User
 
 
 class Proposal(Base):
@@ -11,7 +11,6 @@ class Proposal(Base):
     title = Column(String, unique=True)
     body = Column(String)
     date_created = Column(DateTime)
-    creator_id = Column("User", ForeignKey("user.id"))
+    creator_id = Column(UUID(as_uuid=True), ForeignKey("user.id"))
     #relationships
-    creator = relationship(User, back_populates="proposals")
-
+    # creator = relationship('User', back_populates="proposals")

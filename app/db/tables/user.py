@@ -12,5 +12,5 @@ class User(Base):
     hashed_password = Column(String)
 
     # relationships
-    # one to many
-    proposals = relationship("proposal", back_populates="user")
+    # child in one to many relationship
+    # proposals = relationship("Proposal", back_populates="user")
