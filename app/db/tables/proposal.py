@@ -13,4 +13,4 @@ class Proposal(Base):
     date_created = Column(DateTime)
     creator_id = Column(UUID(as_uuid=True), ForeignKey("user.id"))
     #relationships
-    # creator = relationship('User', back_populates="proposals")
+    creator = relationship('User', backref='proposals', lazy=True)
