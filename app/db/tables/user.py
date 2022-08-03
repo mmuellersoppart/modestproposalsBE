@@ -13,4 +13,4 @@ class User(Base):
 
     # relationships
     # one to many
-    proposals = relationship("proposals", back_populates="users")
+    proposals = relationship("proposal", back_populates="user")
