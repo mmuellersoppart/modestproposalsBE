@@ -15,7 +15,7 @@ services:
       - 5432:5432
 
   app:
-    container_name: tutorial
+    container_name: modestbe
     build:
       context: .
     volumes:
