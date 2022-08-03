@@ -29,3 +29,7 @@ app = get_application()
 @app.get("/")
 def main():
     return {"status": "ok"}
+
+@app.get("/hello")
+def hello():
+    return "hello world!"
