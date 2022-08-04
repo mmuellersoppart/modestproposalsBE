@@ -10,9 +10,11 @@ class ProposalBase(BaseModel):
 class ProposalCreate(ProposalBase):
     pass
 
-class Proposal(ProposalBase):
+class ProposalSchema(ProposalBase):
     id: UUID
     date_created: str
     class Config:
         orm_mode = True
 
+class ProposalPublic(ProposalBase):
+    pass

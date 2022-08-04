@@ -1,5 +1,5 @@
 from uuid import UUID
-from app.models.schema.proposal import Proposal
+from app.models.schema.proposal_schema import ProposalSchema
 from app.models.schema.base import BaseSchema
 
 
@@ -16,7 +16,7 @@ class UserCreate(UserBase):
 
 class UserSchema(UserBase):
     id: UUID
-    proposals: list[Proposal] | None
+    proposals: list[ProposalSchema] | None
 
 
 class UserPublic(UserBase):
