@@ -14,7 +14,7 @@ class UserCreate(UserBase):
     hashed_password: str
 
 
-class User(UserBase):
+class UserSchema(UserBase):
     id: UUID
     proposals: list[Proposal] | None
 

@@ -2,6 +2,7 @@ import abc
 from typing import Generic, TypeVar, Type
 from uuid import uuid4, UUID
 
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.errors import DoesNotExist
@@ -37,3 +38,7 @@ class BaseRepository(Generic[IN_SCHEMA, SCHEMA, TABLE], metaclass=abc.ABCMeta):
         if not entry:
             raise DoesNotExist(f"{self._table.__name__}<id:{entry_id}> does not exist")
         return self._schema.from_orm(entry)
+
+    async def list_all(self) -> list[SCHEMA]:
+        users = await self._db_session.execute(select(self._table))
+        return [self._schema.from_orm(user[0]) for user in users]

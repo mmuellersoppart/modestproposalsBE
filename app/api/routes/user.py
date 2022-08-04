@@ -12,9 +12,16 @@ from app.models.schema import user_schema
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+@router.get("/")
+async def list_all(
+        db: AsyncSession = Depends(get_db)
+) -> [user_schema.UserPublic]:
+    user_repository = UserRepository(db)
+    users = await user_repository.list_all()
+    return [user_schema.UserPublic(**user.dict()) for user in users]
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=user_schema.UserPublic)
-async def create_coupon(
+async def create_user(
     payload: user_schema.UserCreate, db: AsyncSession = Depends(get_db)
 ) -> user_schema.UserPublic:
     user_repository = UserRepository(db)
