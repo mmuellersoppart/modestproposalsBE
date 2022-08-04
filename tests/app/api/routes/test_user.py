@@ -16,24 +16,24 @@ async def test_user_create(
 ) -> None:
     user_repository = UserRepository(db_session)
     payload = {
-      "username": "u1",
-      "email": "u1@m.com",
-      "about": "Hi I am u1.",
-      "profile": "blue",
+      "username": "u2",
+      "email": "u2@m.com",
+      "about": "Hi I am u2.",
+      "profile": "blue2",
       "hashed_password": "u1secret"
     }
 
     response = await async_client.post("/v1/users/", json=payload)
-    # user = await user_repository.get_by_id(response.json()["id"])
-    #
-    # assert response.status_code == status.HTTP_201_CREATED
-    # assert response.json() == {
-    #   "username": "u2",
-    #   "email": "u2@m.com",
-    #   "about": "Hi I am u2.",
-    #   "profile": "blue2",
-    #     "id": str(user.id),
-    # }
+    user = await user_repository.get_by_id(response.json()["id"])
+
+    assert response.status_code == status.HTTP_201_CREATED
+    assert response.json() == {
+      "username": "u2",
+      "email": "u2@m.com",
+      "about": "Hi I am u2.",
+      "profile": "blue2",
+        "id": str(user.id),
+    }
 
 
 # async def test_coupon_get_by_id(

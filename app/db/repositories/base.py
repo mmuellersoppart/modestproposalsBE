@@ -37,7 +37,7 @@ class BaseRepository(Generic[IN_SCHEMA, SCHEMA, TABLE], metaclass=abc.ABCMeta):
         entry = await self._db_session.get(self._table, entry_id)
         if not entry:
             raise DoesNotExist(f"{self._table.__name__}<id:{entry_id}> does not exist")
-        return self._schema.from_orm(entry)
+        return entry
 
     async def list_all(self) -> list[SCHEMA]:
         users = await self._db_session.execute(select(self._table))

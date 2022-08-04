@@ -33,7 +33,7 @@ async def create_user(
 @router.get(
     "/{user_id}", status_code=status.HTTP_200_OK, response_model=user_schema.UserPublic
 )
-async def create_coupon(
+async def get_user(
     user_id: UUID, db: AsyncSession = Depends(get_db)
 ) -> user_schema.UserPublic:
     user_repository = UserRepository(db)

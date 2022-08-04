@@ -20,4 +20,4 @@ class UserSchema(UserBase):
 
 
 class UserPublic(UserBase):
-    pass
+    id: UUID

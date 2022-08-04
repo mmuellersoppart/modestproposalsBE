@@ -25,9 +25,9 @@ async def create_coupon(
 @router.get(
     "/{coupon_id}", status_code=status.HTTP_200_OK, response_model=OutCouponSchema
 )
-async def create_coupon(
+async def get_coupon(
     coupon_id: UUID, db: AsyncSession = Depends(get_db)
 ) -> OutCouponSchema:
     coupons_repository = CouponsRepository(db)
     coupon = await coupons_repository.get_by_id(coupon_id)
-    return OutCouponSchema(**coupon.dict())
+    return OutCouponSchema(**row2dict(coupon))
