@@ -12,7 +12,7 @@ class ProposalCreate(ProposalBase):
 
 class Proposal(ProposalBase):
     id: UUID
-    date_created: datetime.date
+    date_created: str
     class Config:
         orm_mode = True
 

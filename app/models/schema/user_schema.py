@@ -11,10 +11,13 @@ class UserBase(BaseSchema):
 
 
 class UserCreate(UserBase):
-    password: str
+    hashed_password: str
 
 
 class User(UserBase):
     id: UUID
-    proposals: list[Proposal]
+    proposals: list[Proposal] | None
 
+
+class UserPublic(UserBase):
+    pass
