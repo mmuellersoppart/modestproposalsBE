@@ -7,6 +7,7 @@ from starlette import status
 
 from app.api.dependencies.db import get_db
 from app.db.repositories.coupons import CouponsRepository
+from app.db.util import row2dict
 from app.models.schema.coupons import OutCouponSchema, InCouponSchema
 
 router = APIRouter()
@@ -19,8 +20,7 @@ async def create_coupon(
 ) -> OutCouponSchema:
     coupons_repository = CouponsRepository(db)
     coupon = await coupons_repository.create(payload)
-    return OutCouponSchema(**coupon.dict())
-
+    return OutCouponSchema(**row2dict(coupon))
 
 @router.get(
     "/{coupon_id}", status_code=status.HTTP_200_OK, response_model=OutCouponSchema

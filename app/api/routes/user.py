@@ -8,6 +8,7 @@ from starlette import status
 from app.api.dependencies.db import get_db
 from app.db.repositories.users import UserRepository
 from app.models.schema import user_schema
+from app.db.util import row2dict
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -26,7 +27,7 @@ async def create_user(
 ) -> user_schema.UserPublic:
     user_repository = UserRepository(db)
     user = await user_repository.create(payload)
-    return user_schema.UserPublic(**user.dict())
+    return user_schema.UserPublic(**row2dict(user))
 
 
 @router.get(

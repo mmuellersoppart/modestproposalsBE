@@ -11,4 +11,4 @@ This is a tutorial app build for my [blog post](https://rogulski.it/blog/sqlalch
 `docker-compose run app alembic revision --autogenerate`
 
 ## Run migrations
-`docker-compose run app alembic upgrate head`
+`docker-compose run app alembic upgrade head`

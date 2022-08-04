@@ -12,7 +12,6 @@ IN_SCHEMA = TypeVar("IN_SCHEMA", bound=BaseSchema)
 SCHEMA = TypeVar("SCHEMA", bound=BaseSchema)
 TABLE = TypeVar("TABLE")
 
-
 class BaseRepository(Generic[IN_SCHEMA, SCHEMA, TABLE], metaclass=abc.ABCMeta):
     def __init__(self, db_session: AsyncSession, *args, **kwargs) -> None:
         self._db_session: AsyncSession = db_session
@@ -31,7 +30,8 @@ class BaseRepository(Generic[IN_SCHEMA, SCHEMA, TABLE], metaclass=abc.ABCMeta):
         entry = self._table(id=uuid4(), **in_schema.dict())
         self._db_session.add(entry)
         await self._db_session.commit()
-        return self._schema.from_orm(entry)
+        await self._db_session.refresh(entry)
+        return entry
 
     async def get_by_id(self, entry_id: UUID) -> SCHEMA:
         entry = await self._db_session.get(self._table, entry_id)
