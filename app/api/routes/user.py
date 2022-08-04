@@ -38,4 +38,4 @@ async def get_user(
 ) -> user_schema.UserPublic:
     user_repository = UserRepository(db)
     user = await user_repository.get_by_id(user_id)
-    return user_schema.UserPublic(**user.dict())
+    return user_schema.UserPublic(**row2dict(user))

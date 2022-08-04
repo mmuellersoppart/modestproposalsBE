@@ -20,7 +20,7 @@ async def test_user_create(
       "email": "u2@m.com",
       "about": "Hi I am u2.",
       "profile": "blue2",
-      "hashed_password": "u1secret"
+      "hashed_password": "u2secret"
     }
 
     response = await async_client.post("/v1/users/", json=payload)
@@ -36,22 +36,26 @@ async def test_user_create(
     }
 
 
-# async def test_coupon_get_by_id(
-#     async_client: AsyncClient, db_session: AsyncSession
-# ) -> None:
-#     payload = {
-#         "code": "PIOTR",
-#         "init_count": 100,
-#     }
-#     user_repository = CouponsRepository(db_session)
-#     coupon = await user_repository.create(InCouponSchema(**payload))
-#
-#     response = await async_client.get(f"/v1/user/{coupon.id}")
-#
-#     assert response.status_code == status.HTTP_200_OK
-#     assert response.json() == {
-#         "code": payload["code"],
-#         "init_count": payload["init_count"],
-#         "remaining_count": payload["init_count"],
-#         "id": mock.ANY,
-#     }
+async def test_user_get_by_id(
+    async_client: AsyncClient, db_session: AsyncSession
+) -> None:
+    payload = {
+      "username": "u2",
+      "email": "u2@m.com",
+      "about": "Hi I am u2.",
+      "profile": "blue2",
+      "hashed_password": "u2secret"
+    }
+    user_repository = UserRepository(db_session)
+    user = await user_repository.create(UserCreate(**payload))
+
+    response = await async_client.get(f"/v1/users/{user.id}")
+
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+      "username": "u2",
+      "email": "u2@m.com",
+      "about": "Hi I am u2.",
+      "profile": "blue2",
+      "id": mock.ANY,
+    }
