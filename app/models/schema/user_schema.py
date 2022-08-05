@@ -18,6 +18,14 @@ class UserSchema(UserBase):
     id: UUID
     proposals: list[ProposalSchema] | None
 
+class UserComplete(UserBase):
+    id: UUID
+    username: str
+    email: str
+    about: str
+    profile: str
+    hashed_password: str
+    proposals: list[ProposalSchema] | None
 
 class UserPublic(UserBase):
     id: UUID
