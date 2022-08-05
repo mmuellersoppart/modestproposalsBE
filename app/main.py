@@ -2,6 +2,7 @@ import os
 import time
 
 from fastapi import FastAPI
+from fastapi.security import OAuth2PasswordBearer
 
 from app.api.routes.api import api_router
 from app.core.config import settings
@@ -22,6 +23,7 @@ def get_application() -> FastAPI:
 
 app = get_application()
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @app.get("/")
 def main():
