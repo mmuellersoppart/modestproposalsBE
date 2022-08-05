@@ -8,6 +8,7 @@ class ProposalBase(BaseModel):
     creator_id: UUID
 
 class ProposalCreate(ProposalBase):
+    date_created: datetime = datetime.today()
     pass
 
 class ProposalSchema(ProposalBase):

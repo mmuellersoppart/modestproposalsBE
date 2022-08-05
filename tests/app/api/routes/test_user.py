@@ -5,7 +5,7 @@ from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from app.db.repositories.users import UserRepository
+from app.db.repositories.user import UserRepository
 from app.models.schema.user_schema import UserCreate
 
 pytestmark = pytest.mark.asyncio

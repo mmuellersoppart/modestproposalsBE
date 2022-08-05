@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from app.api.dependencies.db import get_db
-from app.db.repositories.users import UserRepository
+from app.db.repositories.user import UserRepository
 from app.models.schema import user_schema
 from app.db.util import row2dict
 
