@@ -1,7 +1,7 @@
 import os
 import time
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordBearer
 
 from app.api.routes.api import api_router
@@ -30,5 +30,5 @@ def main():
     return {"status": "ok"}
 
 @app.get("/hello")
-def hello():
+def hello(token: str = Depends(oauth2_scheme)):
     return "hello world!"
