@@ -13,6 +13,7 @@ from app.db.util import row2dict
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+
 @router.get("/")
 async def list_all(
         db: AsyncSession = Depends(get_db)
